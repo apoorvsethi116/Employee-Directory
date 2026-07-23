@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base backend API endpoint
-const API_URL = 'http://localhost:5000/api/employees';
+const API_URL = 'https://employee-directory-fdlc.onrender.com';
 
 /**
  * Fetches all employees from MongoDB
