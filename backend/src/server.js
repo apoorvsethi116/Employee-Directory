@@ -12,7 +12,11 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors()); 
+app.use(cors({
+  origin: '*', // this allows our middleware to accept request from all origins including vercel frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type']
+})); 
 app.use(express.json());
 
 // Mount Employee routes under /api/employees
