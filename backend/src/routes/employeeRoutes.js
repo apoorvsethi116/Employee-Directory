@@ -5,6 +5,7 @@ const {
   getEmployees,
   createEmployee,
   updateEmployee,
+  deleteEmployee,
 } = require('../controllers/employeeController');
 
 /**
@@ -20,6 +21,7 @@ router.route('/')
  * Endpoint: /api/employees/:id
  */
 router.route('/:id')
-  .put(updateEmployee);
+  .put(updateEmployee)
+  .delete(deleteEmployee);
 
 module.exports = router;

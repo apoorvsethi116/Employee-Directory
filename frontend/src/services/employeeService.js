@@ -32,3 +32,13 @@ export const updateEmployee = async (id, employeeData) => {
   const response = await axios.put(`${API_URL}/${id}`, employeeData);
   return response.data;
 };
+
+/**
+ * Deletes an existing employee entry by ID
+ * @param {string} id - Employee Mongo ID
+ * @returns {Promise<Object>} Delete response
+ */
+export const deleteEmployee = async (id) => {
+  const response = await axios.delete(`${API_URL}/${id}`);
+  return response.data;
+};

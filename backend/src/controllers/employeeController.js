@@ -56,8 +56,31 @@ const updateEmployee = async (req, res) => {
   }
 };
 
+/**
+ * Delete an existing employee in MongoDB
+ * @param {Object} req - Express request containing employee ID in params
+ * @param {Object} res - Express response
+ */
+const deleteEmployee = async (req, res) => {
+  try {
+    // Find employee by ID and remove it from MongoDB
+    const deletedEmployee = await Employee.findByIdAndDelete(req.params.id);
+
+    if (!deletedEmployee) {
+      return res.json({ message: 'Employee not found' });
+    }
+
+    res.json({ message: 'Employee deleted successfully', deletedEmployee });
+  } catch (error) {
+    res.json(error);
+  }
+};
+
+
+
 module.exports = {
   getEmployees,
   createEmployee,
   updateEmployee,
+  deleteEmployee,
 };

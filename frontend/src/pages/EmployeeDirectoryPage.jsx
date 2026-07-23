@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import EmployeeCard from '../components/EmployeeCard';
 import EmployeeFormModal from '../components/EmployeeFormModal';
-import { fetchEmployees, createEmployee, updateEmployee } from '../services/employeeService';
+import { fetchEmployees, createEmployee, updateEmployee, deleteEmployee } from '../services/employeeService';
 
 /**
  * EmployeeDirectoryPage main view
@@ -50,6 +50,21 @@ const EmployeeDirectoryPage = () => {
     }
   };
 
+  const handleDeleteEmployee = async (employee) => {
+    const shouldDelete = window.confirm(`Delete ${employee.fullName}?`);
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    try {
+      await deleteEmployee(employee._id);
+      loadEmployees();
+    } catch (error) {
+      alert(error.response?.data?.message || 'Error deleting employee');
+    }
+  };
+
   const filteredEmployees = employees.filter((emp) => {
     const query = searchTerm.toLowerCase().trim();
     return (
@@ -74,6 +89,7 @@ const EmployeeDirectoryPage = () => {
               key={employee._id}
               employee={employee}
               onEdit={handleOpenEditModal}
+              onDelete={handleDeleteEmployee}
             />
           ))}
         </div>

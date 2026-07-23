@@ -33,7 +33,7 @@ const getBadgeStyles = (dept) => {
 /**
  * EmployeeCard Component
  */
-const EmployeeCard = ({ employee, onEdit }) => {
+const EmployeeCard = ({ employee, onEdit, onDelete }) => {
   const { fullName, role, department, email, phone } = employee;
 
   return (
@@ -66,13 +66,18 @@ const EmployeeCard = ({ employee, onEdit }) => {
         </div>
       </div>
 
-      {/*Edit button*/}
       <div className="w-full text-left pt-2">
         <button
           onClick={() => onEdit(employee)}
           className="px-3 py-1 text-xs font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-300 rounded transition-colors"
         >
           Edit
+        </button>
+        <button
+          onClick={() => onDelete(employee)}
+          className="ml-2 px-3 py-1 text-xs font-medium text-white bg-red-500 hover:bg-red-600 border border-red-500 rounded transition-colors"
+        >
+          Delete
         </button>
       </div>
     </div>

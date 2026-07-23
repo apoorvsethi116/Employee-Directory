@@ -66,6 +66,7 @@ const EmployeeFormModal = ({ isOpen, onClose, onSubmit, employeeToEdit }) => {
       open={isOpen}
       onClose={onClose}
       fullWidth
+      disableRestoreFocus
       maxWidth="xs"
       PaperProps={{
         style: { borderRadius: 16, padding: '8px' },
